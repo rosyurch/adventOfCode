@@ -11,32 +11,22 @@ const resultPart1 = data
 // 466 - correct
 
 const resultPart2 = data => {
-    // const set = new Set();
     const hash = {};
-    // let sum = 0;
-    let firstRepeated;
+    let sum = 0;
+    let found = false;
 
-    data.split('\n')
-        .map(num => Number(num))
-        .reduce((acc, cur) => {});
+    const input = data.split(/\n/g);
 
-    // data.split('\n')
-    //     .map(num => {
-    //         num = Number(num);
-    //         sum += num;
-    //         set.add(sum);
-
-    //         return num;
-    //     })
-    //     .reduce((acc, cur) => {
-    //         if (set.has(acc + cur)) firstRepeated = acc + cur;
-    //         // console.log(set.has(res));
-
-    //         return acc + cur;
-    //     });
-
-    // console.log(set);
-    return firstRepeated;
+    while (!found) {
+        for (const num of input) {
+            sum += Number(num);
+            if (hash[sum]) {
+                found = true;
+                return sum;
+            }
+            hash[sum] = true;
+        }
+    }
 };
 
 console.log(resultPart2(data));
