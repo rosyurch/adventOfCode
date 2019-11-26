@@ -14,20 +14,25 @@ console.log(numOfThree * numOfTwo);
 
 function hasPair(line) {
     const letterCount = {};
+
     for (const letter of line) {
-        if (letterCount[letter]) return true;
-        letterCount[letter] = true;
-        // console.log(letterCount);
+        if (!letterCount[letter]) letterCount[letter] = 1;
+        else letterCount[letter]++;
     }
+
+    for (const num of Object.values(letterCount)) {
+        if (num === 2) return true;
+    }
+
     return false;
 }
 function hasTriple(line) {
     const letterCount = {};
+
     for (const letter of line) {
         if (!letterCount[letter]) letterCount[letter] = 1;
         else letterCount[letter]++;
 
-        // console.log(letterCount);
         if (letterCount[letter] === 3) return true;
     }
     return false;
